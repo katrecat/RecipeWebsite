@@ -38,7 +38,12 @@ class RecipieTable(tables.Table):
         attrs = {'class': "table table-striped thead-dark",
                   'thead' : {'class': 'thead-dark'}}
         fields = {'recipie_name', 'category_name', 'description'}
-    edit = TemplateColumn(template_name='main/update.html')
+        template_name = 'django_tables2/bootstrap4.html'
+    T1     = '<button type="button" class="btn js-update" update-link="{{ record.get_absolute_url_update }}">update</button>'
+    T2     = '<button type="button" class="btn js-delete" delete-link="{{ record.get_absolute_url_delete }}">delete</button>'
+    edit   = TemplateColumn(T1)
+    delete = TemplateColumn(T2)
+    #edit = TemplateColumn(template_name='main/update.html')
     #delete = TemplateColumn(template_name='main/delete.html')
 
 class RecipieIngredientTable(tables.Table):
