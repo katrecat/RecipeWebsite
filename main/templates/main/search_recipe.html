@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% load django_tables2 %}
+
+{% block content %}
+{% if searched %}
+        <h1>You searched for: {{searched}}</h1>
+        <h2>Search results:</h2>
+        {% for recipe in recipes %}
+                <h3> Recipe of {{recipe}} </h3>
+                <li>Description: {{recipe.description}} </li>
+                <li>Category :
+                {% for many_to_many_obj in recipe.category_name.all %}
+                        {{ many_to_many_obj.category_name }} {% if not forloop.last %}, {% endif %} </li>
+                {% endfor %}
+                <h4>Ingredients:</h4>
+                <ul>
+                {% for ingredient in recipe.recipieingredient_set.all %}
+                        <li>{{ ingredient.ingredient_name }}: {{ ingredient.value }} {{ ingredient.unit_of_measure }}</li>
+                {% endfor %}
+                </ul>
+        {% endfor %}
+{% else %}
+        <h1>You forgot to search for recipe</h1>
+{% endif %}
+{% endblock %}

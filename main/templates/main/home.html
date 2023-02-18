@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock %}
+
+
+{% block content %}
+<h1> Welcome to Delicious Recipes </h1>
+<p style="text-align: center; font-size: 20px;">At Delicious Recipes, we believe that cooking should be fun and accessible to everyone. Our website is dedicated to bringing you easy and delicious recipes that you can make at home. Whether you're a seasoned cook or a beginner, we have something for you.</p>
+<!--
+    <section style="padding: 30px;">
+      <img src="{% static 'recipe.jpg' %}" style="height: 400px; width: 700px;">
+      <h2 style="text-align: right; font-size: 30px;">Recipe Categories</h2>
+      <p style="text-align: right; font-size: 20px;">Discover new meals by browsing through our categories:</p>
+      <ul style="list-style-type: none; text-align: right; font-size: 20px;">
+        <li>Breakfast</li>
+        <li>Lunch</li>
+        <li>Dinner</li>
+        <li>Desserts</li>
+      </ul>
+    </section>-->
+<section style="background-color: lightgray; padding: 40px; display: flex; margin-right:30px;">
+  <img src="{% static 'recipe.jpg' %}" alt="Recipe Categories" style="width: 700px; height: 400px;">
+  <div style="margin-left: 40px; ">
+    <h2 style="text-align: right; font-size: 30px;">Recipe Categories</h2>
+    <p style="text-align: right; font-size: 20px;">Discover new meals by browsing through our categories:</p>
+    <ul style="list-style-type: none; text-align: right; font-size: 20px;">
+      <li>Breakfast</li>
+      <li>Lunch</li>
+      <li>Dinner</li>
+      <li>Desserts</li>
+    </ul>
+  </div>
+</section>
+{% endblock %}

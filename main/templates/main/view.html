@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+{% load django_tables2 %}
+
+{% block title %}
+View
+{% endblock %}
+
+{% block content %}
+
+<br>
+<form class="d-flex", method="POST", action="{% url 'search_recipe' %}">
+    {% csrf_token %}
+    <input class="form-control me-2" type="search" placeholder="Recipe name" aria-label="Search" name="searched">
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+</form>
+<small id="HelpBlock" class="form-text text-muted">
+Your query should consist of letters of the English alphabet and will be used to search for the team name.
+</small>
+
+
+<h2 >Ingredients</h2>
+<br> {% render_table table1 %} </br>
+<h2 >Categories</h2>
+<br> {% render_table table2 %} </br>
+<h2 >Ingredient in recipie</h2>
+<br> {% render_table table3 %} </br>
+<h2>Recipie</h2>
+<br> {% render_table table4 %} </br>
+
+
+
+{% endblock %}
