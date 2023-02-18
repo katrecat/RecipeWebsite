@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Create and update
+{% endblock %}
+
+{% block content %}
+<h1>On this page you can add values to all tables in database</h1>
+<h2 >Ingredient</h2>
+<form action="" method="POST">
+    {%  csrf_token  %}
+    {{form1}}
+    <input type="submit" name="Submit" >
+</form>
+
+<h2>Category</h2>
+<form action="" method="POST">
+    {%  csrf_token  %}
+    {{form2}}
+    <input type="submit" name="Submit">
+</form>
+
+<h2>Recipe</h2>
+<form action="" method="POST">
+    {%  csrf_token  %}
+    {{form3}}
+    <input type="submit" name="Submit">
+</form>
+
+<h2>Ingredient in recepie</h2>
+<form action="" method="POST">
+    {%  csrf_token  %}
+    {{form4}}
+    <input type="submit" name="Submit">
+</form>
+
+{% endblock %}
