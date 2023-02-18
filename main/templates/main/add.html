@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Adding
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="{% url 'create_team' %}" class="form-group">
+        {% csrf_token %}
+              <div class="input-group-prepend">
+                  <button type="submit" name="save" class="btn btn-primary btn-lg btn-block">Create team</button>
+              </div>
+       </form>
+</br>
+
+{% endblock %}
