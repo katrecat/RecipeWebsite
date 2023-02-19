@@ -14,47 +14,44 @@ def index(response, id):
 def home(response):
     return render(response, "main/home.html", {})
 
-#-------------------Ingredient-------------------------
+# -------------------Ingredient-------------------------
 
 
 def Create(response):
     form1 = IngredientForm()
-    if response.method == "POST":
-        print('Printing POST :', response.POST)
-        form1 = IngredientForm(response.POST)
-        if form1.is_valid():
-            form1.save()
-            print("33333333333333333")
-        if form1.has_changed():
-            print("000000000000000000000000")
-        else:
-            print("11111111111111111111") #when we write not in this field
-
-
     form2 = CategoryForm()
-    if response.method == "POST":
-        print('Printing POST :', response.POST)
-        form2 = CategoryForm(response.POST)
-        if form2.is_valid():
-            form2.save()
-
     form3 = RecipieForm()
-    if response.method == "POST":
-        print('Printing POST :', response.POST)
-        form3 = RecipieForm(response.POST)
-        if form3.is_valid():
-            form3.save()
-
     form4 = RecepieIngredientForm()
+
     if response.method == "POST":
         print('Printing POST :', response.POST)
-        form4 = RecepieIngredientForm(response.POST)
-        if form4.is_valid():
-            form4.save()
+        if 'submit-ingredient' in response.POST:
+            form1 = IngredientForm(response.POST)
+            if form1.has_changed() and form1.is_valid():
+                print("Form1 is valid and changed, saving")
+                form1.save()
+
+        elif 'submit-category' in response.POST:
+            form2 = CategoryForm(response.POST)
+            if form2.is_valid() and form2.has_changed():
+                print("Form2 is valid and changed, saving")
+                form2.save()
+
+        elif 'submit-recipe' in response.POST:
+            form3 = RecipieForm(response.POST)
+            if form3.is_valid() and form3.has_changed():
+                print("Form3 is valid and changed, saving")
+                form3.save()
+
+        elif 'submit-ingredient-in-recipe' in response.POST:
+            form4 = RecepieIngredientForm(response.POST)
+            if form4.is_valid() and form4.has_changed():
+                print("Form4 is valid and changed, saving")
+                form4.save()
+
     contex = {'form1': form1, 'form2': form2, 'form3': form3, 'form4': form4}
 
-
-    return  render(response, 'main/upd_create.html', contex)
+    return render(response, 'main/upd_create.html', contex)
 
 
 def ViewIngredient(response):

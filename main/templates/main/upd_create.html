@@ -9,28 +9,28 @@ Create and update
 <form action="" method="POST">
     {%  csrf_token  %}
     {{form1}}
-    <input type="submit" name="Submit" >
+    <input type="submit" name="submit-ingredient" >
 </form>
 
 <h2>Category</h2>
 <form action="" method="POST">
     {%  csrf_token  %}
     {{form2}}
-    <input type="submit" name="Submit">
+    <input type="submit" name="submit-category">
 </form>
 
 <h2>Recipe</h2>
 <form action="" method="POST">
     {%  csrf_token  %}
     {{form3}}
-    <input type="submit" name="Submit">
+    <input type="submit" name="submit-recipe">
 </form>
 
 <h2>Ingredient in recepie</h2>
 <form action="" method="POST">
     {%  csrf_token  %}
     {{form4}}
-    <input type="submit" name="Submit">
+    <input type="submit" name="submit-ingredient-in-recipe">
 </form>
 
 {% endblock %}
