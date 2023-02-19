@@ -89,6 +89,15 @@ def ViewIngredient(response):
                                                "table4": table4})
 
 
+def delete(request, pk):
+    if request.method == "POST":
+        recipe = Recipie.objects.get(pk=pk)
+        recipe.delete()
+        return redirect('/view/')
+    context = {'item': pk}
+    return render(request, 'main/delete.html', context)
+
+
 '''
 def DeleteRecipieIngredient(response,pk):
     recipieingredient = RecipieIngredient.objects.get(recipie_ingredient_id=pk)

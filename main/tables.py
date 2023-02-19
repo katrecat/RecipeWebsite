@@ -31,7 +31,7 @@ class RecipieTable(tables.Table):
         attrs = {'class': "table table-striped table-hover"}
         fields = {'recipie_name', 'category_name', 'description'}
     T1 = '<button type="button" class="btn btn-dark js-update" update-link="{{ record.get_absolute_url_update }}">update</button>'  # noqa: E501
-    T2 = '<button type="button" class="btn btn-dark js-delete" delete-link="{{ record.get_absolute_url_delete }}">delete</button>'  # noqa: E501
+    T2 = '<a href={% url "delete" record.pk %} class="btn btn-dark">delete</a>'
     edit = TemplateColumn(T1)
     delete = TemplateColumn(T2)
 
