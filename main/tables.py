@@ -1,6 +1,6 @@
 from django_tables2 import tables, TemplateColumn
 from .models import Ingredient, RecipieIngredient, Recipie, Category
-from django.forms import ModelForm
+
 
 class IngredientTable(tables.Table):
     class Meta:
@@ -8,11 +8,8 @@ class IngredientTable(tables.Table):
         row_attrs = {
             "ingredient_name": lambda record: record.pk
          }
-        attrs = {'class': "table table-striped thead-dark",
-                  'thead': {'class': 'thead-dark' }}
+        attrs = {'class': "table table-striped table-hover"}
         fields = {'ingredient_name'}
-    #edit = TemplateColumn(template_name='main/upd_create.html')
-    #delete = TemplateColumn(template_name='main/delete.html')
 
 
 class CategoryTable(tables.Table):
@@ -21,12 +18,8 @@ class CategoryTable(tables.Table):
         row_attrs = {
             "category_name": lambda record: record.pk
          }
-        attrs = {'class': "table table-striped thead-dark",
-                  'thead' : {'class': 'thead-dark' }}
+        attrs = {'class': "table table-striped table-hover"}
         fields = {'category_name'}
-    #edit = TemplateColumn(template_name='main/upd_create.html')
-    #delete = TemplateColumn(template_name='main/delete.html')
-
 
 
 class RecipieTable(tables.Table):
@@ -35,16 +28,13 @@ class RecipieTable(tables.Table):
         row_attrs = {
             "recipie_name": lambda record: record.pk
          }
-        attrs = {'class': "table table-striped thead-dark",
-                  'thead' : {'class': 'thead-dark'}}
+        attrs = {'class': "table table-striped table-hover"}
         fields = {'recipie_name', 'category_name', 'description'}
-        template_name = 'django_tables2/bootstrap4.html'
-    T1     = '<button type="button" class="btn js-update" update-link="{{ record.get_absolute_url_update }}">update</button>'
-    T2     = '<button type="button" class="btn js-delete" delete-link="{{ record.get_absolute_url_delete }}">delete</button>'
-    edit   = TemplateColumn(T1)
+    T1 = '<button type="button" class="btn btn-dark js-update" update-link="{{ record.get_absolute_url_update }}">update</button>'  # noqa: E501
+    T2 = '<button type="button" class="btn btn-dark js-delete" delete-link="{{ record.get_absolute_url_delete }}">delete</button>'  # noqa: E501
+    edit = TemplateColumn(T1)
     delete = TemplateColumn(T2)
-    #edit = TemplateColumn(template_name='main/update.html')
-    #delete = TemplateColumn(template_name='main/delete.html')
+
 
 class RecipieIngredientTable(tables.Table):
     class Meta:
@@ -52,10 +42,6 @@ class RecipieIngredientTable(tables.Table):
         row_attrs = {
             "recipie_ingredient_id": lambda record: record.pk
          }
-        attrs = {'class': "table table-striped thead-dark",
-                  'thead' : {'class': 'thead-dark'}}
-        fields = {'recipie_ingredient_id', 'recipie_name','ingredient', 'unit_of_measure', 'value'}
-    #edit = TemplateColumn(template_name='main/upd_create.html')
-    #delete = TemplateColumn(template_name='main/delete_column_recipie_ingredient.html')
-
-1
+        attrs = {'class': "table table-striped table-hover"}
+        fields = {'recipie_ingredient_id', 'recipie_name', 'ingredient',
+                  'unit_of_measure', 'value'}

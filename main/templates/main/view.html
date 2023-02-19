@@ -11,7 +11,7 @@ View
 <form class="d-flex", method="POST", action="{% url 'search_recipe' %}">
     {% csrf_token %}
     <input class="form-control me-2" type="search" placeholder="Recipe name" aria-label="Search" name="searched">
-    <button class="btn btn-outline-secondary" type="submit">Search</button>
+    <button class="btn btn-dark" type="submit">Search</button>
 </form>
 <small id="HelpBlock" class="form-text text-muted">
 Your query should consist of letters of the English alphabet and will be used to search for the team name.
