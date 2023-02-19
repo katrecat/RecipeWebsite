@@ -55,11 +55,40 @@ def Create(response):
 
 
 def ViewIngredient(response):
-    table1 = IngredientTable(Ingredient.objects.all())
-    table2 = CategoryTable(Category.objects.all())
-    table3 = RecipieIngredientTable(RecipieIngredient.objects.all())
-    table4 = RecipieTable(Recipie.objects.all())
-    return render(response, "main/view.html", {"table1": table1,"table2": table2,"table3": table3,"table4": table4})
+    print(response.method)
+    if response.method == "GET" and 'sort' in response.GET:
+        key = response.GET['sort']
+        table_3_keys = ["recipie_name", "value", "ingredient",
+                        "recipie_ingredient_id", "unit_of_measure"]
+        table_4_keys = ["description", "recipie_name"]
+        if key == 'ingredient_name':
+            table1 = IngredientTable(Ingredient.objects.order_by(key))
+        else:
+            table1 = IngredientTable(Ingredient.objects.all())
+        if key == 'category_name':
+            table2 = CategoryTable(Category.objects.order_by(key))
+        else:
+            table2 = CategoryTable(Category.objects.all())
+        if key in table_3_keys:
+            table3 = RecipieIngredientTable(RecipieIngredient.objects.order_by(key))    # noqa: E501
+        else:
+            table3 = RecipieIngredientTable(RecipieIngredient.objects.all())
+        if key in table_4_keys:
+            print("key in table_4_keys")
+            table4 = RecipieTable(Recipie.objects.order_by(key))
+        else:
+            table4 = RecipieTable(Recipie.objects.all())
+    else:
+        table1 = IngredientTable(Ingredient.objects.all())
+        table2 = CategoryTable(Category.objects.all())
+        table3 = RecipieIngredientTable(RecipieIngredient.objects.all())
+        table4 = RecipieTable(Recipie.objects.all())
+    return render(response, "main/view.html", {"table1": table1,
+                                               "table2": table2,
+                                               "table3": table3,
+                                               "table4": table4})
+
+
 '''
 def DeleteRecipieIngredient(response,pk):
     recipieingredient = RecipieIngredient.objects.get(recipie_ingredient_id=pk)
