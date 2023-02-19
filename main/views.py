@@ -74,7 +74,6 @@ def ViewIngredient(response):
         else:
             table3 = RecipieIngredientTable(RecipieIngredient.objects.all())
         if key in table_4_keys:
-            print("key in table_4_keys")
             table4 = RecipieTable(Recipie.objects.order_by(key))
         else:
             table4 = RecipieTable(Recipie.objects.all())
@@ -98,17 +97,22 @@ def delete(request, pk):
     return render(request, 'main/delete.html', context)
 
 
-'''
-def DeleteRecipieIngredient(response,pk):
-    recipieingredient = RecipieIngredient.objects.get(recipie_ingredient_id=pk)
-    if response.method == "POST":
-        recipieingredient.delete()
-        return redirect("/view")
+def update(request, pk):
+    recipe = Recipie.objects.get(pk=pk)
+    form = RecipieForm(instance=recipe)
+    contex = {'form': form}
 
-    contex = {"item":recipieingredient}
+    if request.method == "POST":
+        form = RecipieForm(request.POST, instance=recipe)
+        if recipe.recipie_name != request.POST['recipie_name'] and not Recipie.objects.filter(recipie_name=request.POST['recipie_name']).exists():  # noqa: E501
+            recipe.delete()
+        elif recipe.recipie_name != request.POST['recipie_name'] and Recipie.objects.filter(recipie_name=request.POST['recipie_name']).exists():  # noqa: E501
+            return render(request, 'main/update.html', {'form': form})
+        if form.is_valid():
+            form.save()
+            return redirect('/view/')
+    return render(request, 'main/update.html', contex)
 
-    return render(response,"main/delete.html", contex)
-'''
 
 def SearchRecipe(response):
     if response.method == "POST":
